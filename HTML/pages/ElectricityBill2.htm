@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible"
+		content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0"><html>
+    <head>
+        <title>Electricity Bill Version 2</title>
+        <style>
+            .center{
+                text-align: center;
+            }
+        </style>
+        <script type="text/javascript">
+            function BILL(){
+                var U=document.getElementById('units').value;
+                var RES
+                if (0<U<=150){
+                    RES=U*4.50
+                    if (RES>200){
+                        document.getElementById("res").innerHTML="Total bill is: Rs. "+RES;
+                    }
+                    else{
+                        RES=200;
+                        document.getElementById("res").innerHTML="Total bill is: Rs. "+RES;
+                    }                    
+                }
+                else if (200>=U>150){
+                    first150=150*4.50
+                    next50=(U-50)*5
+                    RES=first150+next50
+                    document.getElementById("res").innerHTML="Total bill is: Rs. "+RES;
+                }
+                else if (200<U<=250){
+                    first150=150*4.50
+                    next50=50*5
+                    nextnext50=(U-200)*5
+                    RES=first150+next50+nextnext50
+                    document.getElementById("res").innerHTML="Total bill is: Rs. "+RES;
+                }
+                else if (300>=U>250){
+                    first150=150*4.50
+                    next50=50*5
+                    nextnext50=50*5.50
+                    nextnextnext50=(U-250)*6.5
+                    RES=first150+next50+nextnext50+nextnextnext50
+                    document.getElementById("res").innerHTML="Total bill is: Rs. "+RES;
+                }
+                else{
+                    first150=150*4.50
+                    next50=50*5
+                    nextnext50=50*5.50
+                    nextnextnext50=50*6.5
+                    next300=(U-300)*6.5
+                    RES=first150+next50+nextnext50+nextnextnext50+next300
+                }
+                confirm("Total payable amount is Rs. "+RES);
+            }
+        </script>
+    </head>
+    <body>
+        <div align="right">
+            <a href="../index.htm"><button onmouseover="this.style.color='red'">GO BACK TO INDEX</button></a>
+        </div>
+        <div class="center" style="background-color: purple; color:white;"><h2>LAB ACTIVITY 2</h2></div>
+        <span><u>ELECTRICITY BILL</u></span>
+        <div>
+            <form onsubmit="return VALIDATE()" name="myForm" method="post">
+                <fieldset>
+                    <legend>
+                        <h2>Electricity Bill</h2>
+                    </legend>
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="name">Name: </label>
+                            </td>
+                            <td>
+                                <input type="text" required placeholder="Name" name="username" id="name" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="mobnumber">Mobile Number:</label>
+                            </td>
+                            <td>
+                                <input type="tel" required placeholder="Mobile Number" name="contact" onKeyPress="if(this.value.length==10) return false;" id="mobnumber" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="email">Email ID: </label>
+                            </td>
+                            <td>
+                                <input type="email" required placeholder="Email ID" name="useremail" id="email" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="units">Units Consumed: </label>
+                            </td>
+                            <td>
+                                <input type="number" required placeholder="Unit Consumed" name="unitsconsumed" id="units">
+                            </td>
+                        </tr>
+                        <tr><td>  </td><td>   </td></tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align: right;">
+                                <input type="submit" value="Submit" onclick=BILL()>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><p id="res">Amount here!</p></td>
+                        </tr>            
+                    </table>
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>
